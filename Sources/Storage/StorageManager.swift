@@ -2,13 +2,13 @@ import Foundation
 
 // BAD: God class that does too much
 public final class StorageManager: @unchecked Sendable {
-    public static let shared = StorageManager()
+    public static let `default` = StorageManager()
 
     private var inMemoryStore: [String: Any] = [:]
     public var lastError: String?
     public var operationCount: Int = 0
 
-    private init() {}
+    public init() {}
 
     public func save(key: String, value: Any) {
         inMemoryStore[key] = value

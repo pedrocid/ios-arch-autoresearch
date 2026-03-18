@@ -27,16 +27,16 @@ public final class ProductListViewModel: @unchecked Sendable {
 
             // BAD: Analytics tracking in ViewModel
             for product in products {
-                AnalyticsTracker.shared.trackProductView(product: product)
+                AnalyticsTracker.default.trackProductView(product: product)
             }
 
             // BAD: Direct storage access
-            StorageManager.shared.save(key: "last_category", value: category)
+            StorageManager.default.save(key: "last_category", value: category)
 
         } catch {
             errorMessage = "Failed to load products: \(error.localizedDescription)"
             // BAD: ViewModel stores errors in global storage
-            StorageManager.shared.save(key: "last_error", value: errorMessage as Any)
+            StorageManager.default.save(key: "last_error", value: errorMessage as Any)
         }
 
         isLoading = false
@@ -56,6 +56,6 @@ public final class ProductListViewModel: @unchecked Sendable {
 
     // BAD: Report generation in ViewModel
     public func fullReport() -> String {
-        AnalyticsTracker.shared.generateReport()
+        AnalyticsTracker.default.generateReport()
     }
 }

@@ -5,12 +5,12 @@ import Storage
 
 // BAD: Analytics coupled to everything
 public final class AnalyticsTracker: @unchecked Sendable {
-    public static let shared = AnalyticsTracker()
+    public static let `default` = AnalyticsTracker()
 
-    private let storage = StorageManager.shared
+    private let storage = StorageManager.default
     private var events: [(name: String, timestamp: Date, metadata: [String: String])] = []
 
-    private init() {}
+    public init() {}
 
     public func track(event: String, metadata: [String: String] = [:]) {
         events.append((name: event, timestamp: Date(), metadata: metadata))
@@ -59,7 +59,7 @@ public final class AnalyticsTracker: @unchecked Sendable {
         // BAD: Accesses storage directly for report
         report += "Storage summary: \(storage.formattedSummary())\n"
         // BAD: Accesses networking status in analytics
-        report += "API status: \(APIClient.shared.statusDescription())\n"
+        report += "API status: \(APIClient.default.statusDescription())\n"
         return report
     }
 

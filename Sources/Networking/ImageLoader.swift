@@ -3,12 +3,12 @@ import Storage
 
 // BAD: Another networking class tightly coupled to storage
 public final class ImageLoader: @unchecked Sendable {
-    public static let shared = ImageLoader()
+    public static let `default` = ImageLoader()
 
-    private let storage = StorageManager.shared
-    private let apiClient = APIClient.shared
+    private let storage = StorageManager.default
+    private let apiClient = APIClient.default
 
-    private init() {}
+    public init() {}
 
     public func loadImage(from urlString: String) async throws -> Data {
         let cacheKey = "img_\(urlString.hashValue)"

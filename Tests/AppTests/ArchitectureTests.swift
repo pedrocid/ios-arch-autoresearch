@@ -82,7 +82,7 @@ struct ArchitectureTests {
 
     @Test("Storage key validation")
     func storageKeyValidation() {
-        let storage = StorageManager.shared
+        let storage = StorageManager.default
         #expect(storage.isValidKey("valid_key"))
         #expect(storage.isValidKey("user123"))
         #expect(!storage.isValidKey(""))
@@ -91,7 +91,7 @@ struct ArchitectureTests {
 
     @Test("Storage operations")
     func storageOperations() {
-        let storage = StorageManager.shared
+        let storage = StorageManager.default
         storage.clear()
 
         storage.save(key: "test", value: "hello")
@@ -117,7 +117,7 @@ struct ArchitectureTests {
 
     @Test("Analytics tracking")
     func analyticsTracking() {
-        let tracker = AnalyticsTracker.shared
+        let tracker = AnalyticsTracker.default
         let user = User(id: "1", name: "Test", email: "test@test.com")
         tracker.trackUserLogin(user: user)
         // Just verify it doesn't crash - the coupling is the problem we're measuring

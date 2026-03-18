@@ -23,10 +23,10 @@ public final class OrderViewModel: @unchecked Sendable {
         order.save()
 
         // BAD: Analytics in ViewModel
-        AnalyticsTracker.shared.trackOrderPlaced(order: order)
+        AnalyticsTracker.default.trackOrderPlaced(order: order)
 
         // BAD: Direct storage manipulation
-        StorageManager.shared.save(key: "last_order_id", value: order.id)
+        StorageManager.default.save(key: "last_order_id", value: order.id)
 
         orders.append(order)
         return order
@@ -47,9 +47,9 @@ public final class OrderViewModel: @unchecked Sendable {
         """
         Orders: \(orders.count)
         Revenue: \(formattedRevenue)
-        API: \(APIClient.shared.statusDescription())
-        Storage: \(StorageManager.shared.formattedSummary())
-        Analytics: \(AnalyticsTracker.shared.generateReport())
+        API: \(APIClient.default.statusDescription())
+        Storage: \(StorageManager.default.formattedSummary())
+        Analytics: \(AnalyticsTracker.default.generateReport())
         """
     }
 }

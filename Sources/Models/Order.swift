@@ -39,7 +39,7 @@ public struct Order: Codable, Equatable, Sendable {
     // BAD: Persistence in model
     public func save() {
         let data = try? JSONEncoder().encode(self)
-        StorageManager.shared.save(key: "order_\(id)", value: data as Any)
+        StorageManager.default.save(key: "order_\(id)", value: data as Any)
     }
 
     // BAD: Status validation logic in model

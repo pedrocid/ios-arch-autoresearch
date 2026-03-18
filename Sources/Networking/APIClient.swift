@@ -3,13 +3,13 @@ import Storage
 
 // BAD: Networking directly depends on Storage (should go through an abstraction)
 public final class APIClient: @unchecked Sendable {
-    public static let shared = APIClient()
+    public static let `default` = APIClient()
 
-    private let storage = StorageManager.shared
+    private let storage = StorageManager.default
     public var baseURL: String = "https://api.example.com"
     public var timeoutInterval: TimeInterval = 30
 
-    private init() {}
+    public init() {}
 
     // BAD: Mixing networking with caching logic
     public func fetch(endpoint: String, cachePolicy: CachePolicy = .never) async throws -> Data {

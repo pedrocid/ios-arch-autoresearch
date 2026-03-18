@@ -25,14 +25,14 @@ public struct UserProfileViewModel: Sendable {
         let user = try await User.fetch(id: userId)
 
         // BAD: ViewModel tracks analytics
-        AnalyticsTracker.shared.trackUserLogin(user: user)
+        AnalyticsTracker.default.trackUserLogin(user: user)
 
         // BAD: ViewModel manages caching
         user.save()
 
         var avatarData: Data?
         if let url = user.avatarURL {
-            avatarData = try? await ImageLoader.shared.loadImage(from: url)
+            avatarData = try? await ImageLoader.default.loadImage(from: url)
         }
 
         return UserProfileViewModel(
@@ -46,6 +46,6 @@ public struct UserProfileViewModel: Sendable {
 
     // BAD: ViewModel knows about storage
     public var storageInfo: String {
-        StorageManager.shared.formattedSummary()
+        StorageManager.default.formattedSummary()
     }
 }

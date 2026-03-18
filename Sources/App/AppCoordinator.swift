@@ -26,14 +26,14 @@ public final class AppCoordinator: @unchecked Sendable {
         let order = orderVM.createOrder(userId: userId, products: productVM.products)
 
         // BAD: Direct analytics call
-        AnalyticsTracker.shared.track(event: "quick_order", metadata: [
+        AnalyticsTracker.default.track(event: "quick_order", metadata: [
             "user_id": userId,
             "category": category,
             "order_id": order.id
         ])
 
         // BAD: Direct storage call
-        StorageManager.shared.save(key: "last_quick_order", value: order.id)
+        StorageManager.default.save(key: "last_quick_order", value: order.id)
 
         return order
     }
@@ -42,12 +42,12 @@ public final class AppCoordinator: @unchecked Sendable {
     public func diagnostics() -> String {
         """
         === System Diagnostics ===
-        API: \(APIClient.shared.statusDescription())
-        Storage: \(StorageManager.shared.formattedSummary())
+        API: \(APIClient.default.statusDescription())
+        Storage: \(StorageManager.default.formattedSummary())
         Products loaded: \(productVM.products.count)
         Orders: \(orderVM.orders.count)
         Revenue: \(orderVM.formattedRevenue)
-        \(AnalyticsTracker.shared.generateReport())
+        \(AnalyticsTracker.default.generateReport())
         """
     }
 }
