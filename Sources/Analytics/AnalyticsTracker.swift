@@ -1,6 +1,5 @@
 import Foundation
 import Models
-import Networking
 import Storage
 
 // BAD: Analytics coupled to everything
@@ -58,8 +57,6 @@ public final class AnalyticsTracker: @unchecked Sendable {
         report += "Total events: \(events.count)\n"
         // BAD: Accesses storage directly for report
         report += "Storage summary: \(storage.formattedSummary())\n"
-        // BAD: Accesses networking status in analytics
-        report += "API status: \(APIClient.default.statusDescription())\n"
         return report
     }
 
