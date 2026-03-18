@@ -12,7 +12,7 @@ let package = Package(
         .target(name: "Models", dependencies: []),
 
         // Networking layer - depends on things it shouldn't
-        .target(name: "Networking", dependencies: ["Storage"]),
+        .target(name: "Networking", dependencies: []),
 
         // Storage/persistence layer
         .target(name: "Storage", dependencies: []),

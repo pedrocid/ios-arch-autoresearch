@@ -1,29 +1,35 @@
 import Foundation
-import Storage
 
-// BAD: Networking directly depends on Storage (should go through an abstraction)
+public enum CacheDirective: Sendable {
+    case never
+    case always
+    case duration(TimeInterval)
+    case untilAppRestart
+
+    public var httpHeaderValue: String {
+        switch self {
+        case .never: return "no-cache, no-store"
+        case .always: return "max-age=31536000"
+        case .duration(let seconds): return "max-age=\(Int(seconds))"
+        case .untilAppRestart: return "private, max-age=3600"
+        }
+    }
+}
+
 public final class APIClient: @unchecked Sendable {
     public static let `default` = APIClient()
 
-    private let storage = StorageManager.default
     public var baseURL: String = "https://api.example.com"
     public var timeoutInterval: TimeInterval = 30
+    public var lastError: String?
 
     public init() {}
 
-    // BAD: Mixing networking with caching logic
-    public func fetch(endpoint: String, cachePolicy: CachePolicy = .never) async throws -> Data {
-        let cacheKey = "api_cache_\(endpoint)"
-
-        // BAD: Direct storage access in networking layer
-        if case .always = cachePolicy, let cached = storage.load(key: cacheKey) as? Data {
-            return cached
-        }
-
+    public func fetch(endpoint: String, cacheDirective: CacheDirective = .never) async throws -> Data {
         let url = URL(string: "\(baseURL)/\(endpoint)")!
         var request = URLRequest(url: url)
         request.timeoutInterval = timeoutInterval
-        request.setValue(cachePolicy.httpHeaderValue, forHTTPHeaderField: "Cache-Control")
+        request.setValue(cacheDirective.httpHeaderValue, forHTTPHeaderField: "Cache-Control")
 
         let (data, response) = try await URLSession.shared.data(for: request)
 
@@ -32,30 +38,21 @@ public final class APIClient: @unchecked Sendable {
         }
 
         guard (200...299).contains(httpResponse.statusCode) else {
-            // BAD: Storing error details directly
-            storage.save(key: "last_api_error", value: "HTTP \(httpResponse.statusCode) for \(endpoint)")
+            lastError = "HTTP \(httpResponse.statusCode) for \(endpoint)"
             throw APIError.httpError(statusCode: httpResponse.statusCode)
-        }
-
-        // BAD: Networking layer decides caching strategy
-        if case .never = cachePolicy {} else {
-            storage.save(key: cacheKey, value: data)
         }
 
         return data
     }
 
-    // BAD: Knows about user domain concepts
     public func fetchUser(id: String) async throws -> Data {
-        return try await fetch(endpoint: "users/\(id)", cachePolicy: .duration(300))
+        return try await fetch(endpoint: "users/\(id)", cacheDirective: .duration(300))
     }
 
-    // BAD: Knows about product domain concepts
     public func fetchProducts(category: String) async throws -> Data {
-        return try await fetch(endpoint: "products?category=\(category)", cachePolicy: .always)
+        return try await fetch(endpoint: "products?category=\(category)", cacheDirective: .always)
     }
 
-    // BAD: Authentication logic in API client
     public func authenticate(username: String, password: String) async throws -> String {
         let body = ["username": username, "password": password]
         let jsonData = try JSONSerialization.data(withJSONObject: body)
@@ -69,15 +66,11 @@ public final class APIClient: @unchecked Sendable {
         let (data, _) = try await URLSession.shared.data(for: request)
         let json = try JSONSerialization.jsonObject(with: data) as! [String: Any]
         let token = json["token"] as! String
-
-        // BAD: Networking layer managing sessions
-        storage.saveUserSession(userId: username, token: token, expiresIn: 3600)
         return token
     }
 
-    // BAD: Retry logic mixed with formatting
     public func statusDescription() -> String {
-        if let lastError = storage.load(key: "last_api_error") as? String {
+        if let lastError = lastError {
             return "API Status: Error - \(lastError)"
         }
         return "API Status: OK (base: \(baseURL))"
