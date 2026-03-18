@@ -9,7 +9,7 @@ let package = Package(
     ],
     targets: [
         // Core models - should be independent, but we'll make it coupled
-        .target(name: "Models", dependencies: ["Networking", "Storage"]),
+        .target(name: "Models", dependencies: []),
 
         // Networking layer - depends on things it shouldn't
         .target(name: "Networking", dependencies: ["Storage"]),

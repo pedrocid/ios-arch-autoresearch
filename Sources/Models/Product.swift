@@ -1,8 +1,5 @@
 import Foundation
-import Networking
-import Storage
 
-// BAD: Same pattern - model coupled to infrastructure
 public struct Product: Codable, Equatable, Sendable {
     public let id: String
     public let name: String
@@ -18,33 +15,11 @@ public struct Product: Codable, Equatable, Sendable {
         self.imageURL = imageURL
     }
 
-    // BAD: Model fetches from network
-    public static func fetchAll(category: String) async throws -> [Product] {
-        let data = try await APIClient.default.fetchProducts(category: category)
-        return try JSONDecoder().decode([Product].self, from: data)
-    }
-
-    // BAD: Model manages its own persistence
-    public func save() {
-        let data = try? JSONEncoder().encode(self)
-        StorageManager.default.save(key: "product_\(id)", value: data as Any)
-    }
-
-    // BAD: Formatting/presentation in model
     public var formattedPrice: String {
         String(format: "$%.2f", price)
     }
 
-    // BAD: Business logic mixed in
     public var isOnSale: Bool {
         category == "clearance" || price < 10.0
-    }
-
-    // BAD: Image loading concern in model
-    public func loadImage() async throws -> Data {
-        guard let url = imageURL else {
-            return ImageLoader.default.placeholderImageData()
-        }
-        return try await ImageLoader.default.loadImage(from: url)
     }
 }
