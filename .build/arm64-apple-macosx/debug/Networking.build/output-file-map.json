@@ -1,0 +1,19 @@
+{
+  "": {
+    "swift-dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Networking.build/master.swiftdeps"
+  },
+  "/Users/pedrocid/Programming/ios-arch-autoresearch/Sources/Networking/APIClient.swift": {
+    "dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Networking.build/APIClient.d",
+    "object": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Networking.build/APIClient.swift.o",
+    "swiftmodule": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Networking.build/APIClient~partial.swiftmodule",
+    "swift-dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Networking.build/APIClient.swiftdeps",
+    "diagnostics": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Networking.build/APIClient.dia"
+  },
+  "/Users/pedrocid/Programming/ios-arch-autoresearch/Sources/Networking/ImageLoader.swift": {
+    "dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Networking.build/ImageLoader.d",
+    "object": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Networking.build/ImageLoader.swift.o",
+    "swiftmodule": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Networking.build/ImageLoader~partial.swiftmodule",
+    "swift-dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Networking.build/ImageLoader.swiftdeps",
+    "diagnostics": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Networking.build/ImageLoader.dia"
+  }
+}

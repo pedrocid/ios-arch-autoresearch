@@ -1,0 +1,19 @@
+{
+  "": {
+    "swift-dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Storage.build/master.swiftdeps"
+  },
+  "/Users/pedrocid/Programming/ios-arch-autoresearch/Sources/Storage/CachePolicy.swift": {
+    "dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Storage.build/CachePolicy.d",
+    "object": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Storage.build/CachePolicy.swift.o",
+    "swiftmodule": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Storage.build/CachePolicy~partial.swiftmodule",
+    "swift-dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Storage.build/CachePolicy.swiftdeps",
+    "diagnostics": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Storage.build/CachePolicy.dia"
+  },
+  "/Users/pedrocid/Programming/ios-arch-autoresearch/Sources/Storage/StorageManager.swift": {
+    "dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Storage.build/StorageManager.d",
+    "object": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Storage.build/StorageManager.swift.o",
+    "swiftmodule": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Storage.build/StorageManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Storage.build/StorageManager.swiftdeps",
+    "diagnostics": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Storage.build/StorageManager.dia"
+  }
+}

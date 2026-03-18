@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/App.build/master.swiftdeps"
+  },
+  "/Users/pedrocid/Programming/ios-arch-autoresearch/Sources/App/AppCoordinator.swift": {
+    "dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/App.build/AppCoordinator.d",
+    "object": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/App.build/AppCoordinator.swift.o",
+    "swiftmodule": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/App.build/AppCoordinator~partial.swiftmodule",
+    "swift-dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/App.build/AppCoordinator.swiftdeps",
+    "diagnostics": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/App.build/AppCoordinator.dia"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Analytics.build/master.swiftdeps"
+  },
+  "/Users/pedrocid/Programming/ios-arch-autoresearch/Sources/Analytics/AnalyticsTracker.swift": {
+    "dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Analytics.build/AnalyticsTracker.d",
+    "object": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Analytics.build/AnalyticsTracker.swift.o",
+    "swiftmodule": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Analytics.build/AnalyticsTracker~partial.swiftmodule",
+    "swift-dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Analytics.build/AnalyticsTracker.swiftdeps",
+    "diagnostics": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Analytics.build/AnalyticsTracker.dia"
+  }
+}

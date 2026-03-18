@@ -1,0 +1,26 @@
+{
+  "": {
+    "swift-dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Models.build/master.swiftdeps"
+  },
+  "/Users/pedrocid/Programming/ios-arch-autoresearch/Sources/Models/Order.swift": {
+    "dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Models.build/Order.d",
+    "object": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Models.build/Order.swift.o",
+    "swiftmodule": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Models.build/Order~partial.swiftmodule",
+    "swift-dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Models.build/Order.swiftdeps",
+    "diagnostics": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Models.build/Order.dia"
+  },
+  "/Users/pedrocid/Programming/ios-arch-autoresearch/Sources/Models/Product.swift": {
+    "dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Models.build/Product.d",
+    "object": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Models.build/Product.swift.o",
+    "swiftmodule": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Models.build/Product~partial.swiftmodule",
+    "swift-dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Models.build/Product.swiftdeps",
+    "diagnostics": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Models.build/Product.dia"
+  },
+  "/Users/pedrocid/Programming/ios-arch-autoresearch/Sources/Models/User.swift": {
+    "dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Models.build/User.d",
+    "object": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Models.build/User.swift.o",
+    "swiftmodule": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Models.build/User~partial.swiftmodule",
+    "swift-dependencies": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Models.build/User.swiftdeps",
+    "diagnostics": "/Users/pedrocid/Programming/ios-arch-autoresearch/.build/arm64-apple-macosx/debug/Models.build/User.dia"
+  }
+}
