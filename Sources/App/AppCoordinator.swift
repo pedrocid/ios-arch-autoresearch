@@ -1,11 +1,9 @@
 import Foundation
 import Models
 import Networking
-import Storage
 import Analytics
 import UIComponents
 
-// BAD: God coordinator that knows about everything
 public final class AppCoordinator: @unchecked Sendable {
     public let profileVM: UserProfileViewModel?
     public let productVM: ProductListViewModel
@@ -20,7 +18,6 @@ public final class AppCoordinator: @unchecked Sendable {
         self.orderVM = OrderViewModel()
     }
 
-    // BAD: Coordinator does business logic
     public func quickOrder(userId: String, category: String) async -> Order? {
         await productVM.loadProducts(category: category)
 
@@ -28,25 +25,19 @@ public final class AppCoordinator: @unchecked Sendable {
 
         let order = orderVM.createOrder(userId: userId, products: productVM.products)
 
-        // BAD: Direct analytics call
         AnalyticsTracker.default.track(event: "quick_order", metadata: [
             "user_id": userId,
             "category": category,
             "order_id": order.id
         ])
 
-        // BAD: Direct storage call
-        StorageManager.default.save(key: "last_quick_order", value: order.id)
-
         return order
     }
 
-    // BAD: System diagnostics in coordinator
     public func diagnostics() -> String {
         """
         === System Diagnostics ===
         API: \(APIClient.default.statusDescription())
-        Storage: \(StorageManager.default.formattedSummary())
         Products loaded: \(productVM.products.count)
         Orders: \(orderVM.orders.count)
         Revenue: \(orderVM.formattedRevenue)
