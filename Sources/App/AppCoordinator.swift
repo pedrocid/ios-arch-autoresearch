@@ -1,6 +1,5 @@
 import Foundation
 import Models
-import UIComponents
 import Networking
 import Analytics
 protocol QuickOrderProviding { func quickOrder(userId: String, category: String) async -> Order? }

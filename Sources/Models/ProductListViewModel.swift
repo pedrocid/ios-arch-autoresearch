@@ -1,5 +1,4 @@
 import Foundation
-import Models
 
 open class ProductListViewModel: @unchecked Sendable {
     public var products: [Product] = []

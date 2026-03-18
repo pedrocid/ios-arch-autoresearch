@@ -1,5 +1,4 @@
 import Foundation
-import Models
 
 open class OrderViewModel: @unchecked Sendable {
     public var orders: [Order] = []
