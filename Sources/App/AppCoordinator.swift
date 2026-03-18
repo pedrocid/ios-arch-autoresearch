@@ -1,6 +1,5 @@
 import Foundation
 import Models
-import Networking
 import UIComponents
 
 public final class AppCoordinator: @unchecked Sendable {
@@ -8,12 +7,9 @@ public final class AppCoordinator: @unchecked Sendable {
     public let productVM: ProductListViewModel
     public let orderVM: OrderViewModel
 
-    public init() {
+    public init(fetchProducts: @escaping @Sendable (String) async throws -> [Product] = { _ in [] }) {
         self.profileVM = nil
-        self.productVM = ProductListViewModel(fetchProducts: { category in
-            let data = try await APIClient.default.fetchProducts(category: category)
-            return try JSONDecoder().decode([Product].self, from: data)
-        })
+        self.productVM = ProductListViewModel(fetchProducts: fetchProducts)
         self.orderVM = OrderViewModel()
     }
 
@@ -29,7 +25,6 @@ public final class AppCoordinator: @unchecked Sendable {
     public func diagnostics() -> String {
         """
         === System Diagnostics ===
-        API: \(APIClient.default.statusDescription())
         Products loaded: \(productVM.products.count)
         Orders: \(orderVM.orders.count)
         Revenue: \(orderVM.formattedRevenue)
