@@ -32,6 +32,15 @@ let package = Package(
         // Cache policy definitions
         .target(name: "CachePolicies", dependencies: []),
 
+        // Persistence abstractions
+        .target(name: "PersistenceAbstractions", dependencies: []),
+
+        // API abstractions
+        .target(name: "APIAbstractions", dependencies: []),
+
+        // Event tracking abstractions
+        .target(name: "EventTracking", dependencies: []),
+
         // Networking layer - depends on things it shouldn't
         .target(name: "Networking", dependencies: []),
 
@@ -48,6 +57,6 @@ let package = Package(
         .target(name: "App", dependencies: ["Models", "Networking", "Storage", "Analytics", "UIComponents"]),
 
         // Tests - must keep compiling
-        .testTarget(name: "AppTests", dependencies: ["App", "Models", "Networking", "Storage", "Analytics", "UIComponents", "DomainProtocols", "ValidationRules", "StorageProtocols", "NetworkProtocols", "AnalyticsProtocols", "UIProtocols", "CachePolicies"]),
+        .testTarget(name: "AppTests", dependencies: ["App", "Models", "Networking", "Storage", "Analytics", "UIComponents", "DomainProtocols", "ValidationRules", "StorageProtocols", "NetworkProtocols", "AnalyticsProtocols", "UIProtocols", "CachePolicies", "PersistenceAbstractions", "APIAbstractions", "EventTracking"]),
     ]
 )
