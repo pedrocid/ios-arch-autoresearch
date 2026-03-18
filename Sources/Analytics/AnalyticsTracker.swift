@@ -1,24 +1,17 @@
 import Foundation
 import Models
-import Storage
 
-// BAD: Analytics coupled to everything
 public final class AnalyticsTracker: @unchecked Sendable {
     public static let `default` = AnalyticsTracker()
 
-    private let storage = StorageManager.default
     private var events: [(name: String, timestamp: Date, metadata: [String: String])] = []
 
     public init() {}
 
     public func track(event: String, metadata: [String: String] = [:]) {
         events.append((name: event, timestamp: Date(), metadata: metadata))
-        // BAD: Analytics persists via storage directly
-        storage.save(key: "analytics_last_event", value: event)
-        storage.save(key: "analytics_count", value: events.count)
     }
 
-    // BAD: Analytics knows about domain models
     public func trackUserLogin(user: User) {
         track(event: "user_login", metadata: [
             "user_id": user.id,
@@ -27,7 +20,6 @@ public final class AnalyticsTracker: @unchecked Sendable {
         ])
     }
 
-    // BAD: Analytics knows about products
     public func trackProductView(product: Product) {
         track(event: "product_view", metadata: [
             "product_id": product.id,
@@ -37,7 +29,6 @@ public final class AnalyticsTracker: @unchecked Sendable {
         ])
     }
 
-    // BAD: Analytics knows about orders
     public func trackOrderPlaced(order: Order) {
         track(event: "order_placed", metadata: [
             "order_id": order.id,
@@ -47,7 +38,6 @@ public final class AnalyticsTracker: @unchecked Sendable {
         ])
     }
 
-    // BAD: Analytics contains reporting logic
     public func generateReport() -> String {
         let grouped = Dictionary(grouping: events, by: { $0.name })
         var report = "=== Analytics Report ===\n"
@@ -55,13 +45,10 @@ public final class AnalyticsTracker: @unchecked Sendable {
             report += "\(event): \(occurrences.count) times\n"
         }
         report += "Total events: \(events.count)\n"
-        // BAD: Accesses storage directly for report
-        report += "Storage summary: \(storage.formattedSummary())\n"
         return report
     }
 
-    // BAD: Cache management in analytics
-    public func trackCacheHit(policy: CachePolicy) {
-        track(event: policy.analyticsEventName, metadata: ["display": policy.displayName])
+    public func trackCacheHit(eventName: String, displayName: String) {
+        track(event: eventName, metadata: ["display": displayName])
     }
 }
