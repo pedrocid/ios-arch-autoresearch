@@ -33,3 +33,10 @@ extension Order {
         StorageManager.default.save(key: "order_\(id)", value: data as Any)
     }
 }
+
+// Image loading helper
+enum RemoteImageLoader {
+    static func loadImage(from urlString: String) async throws -> Data {
+        try await Networking.ImageLoader.default.loadImage(from: urlString)
+    }
+}

@@ -1,10 +1,6 @@
 import Foundation
 import Models
-import Networking
-import Analytics
-import Storage
 
-// BAD: UI component coupled to networking, analytics, and storage
 public struct UserProfileViewModel: Sendable {
     public let userId: String
     public let displayName: String
@@ -20,19 +16,12 @@ public struct UserProfileViewModel: Sendable {
         self.isActive = isActive
     }
 
-    // BAD: ViewModel fetches data directly from network
     public static func load(userId: String) async throws -> UserProfileViewModel {
         let user = try await User.fetch(id: userId)
 
-        // BAD: ViewModel tracks analytics
-        AnalyticsTracker.default.trackUserLogin(user: user)
-
-        // BAD: ViewModel manages caching
-        user.save()
-
         var avatarData: Data?
         if let url = user.avatarURL {
-            avatarData = try? await ImageLoader.default.loadImage(from: url)
+            avatarData = try? await RemoteImageLoader.loadImage(from: url)
         }
 
         return UserProfileViewModel(
@@ -42,10 +31,5 @@ public struct UserProfileViewModel: Sendable {
             avatarData: avatarData,
             isActive: user.isActive
         )
-    }
-
-    // BAD: ViewModel knows about storage
-    public var storageInfo: String {
-        StorageManager.default.formattedSummary()
     }
 }
