@@ -1,5 +1,4 @@
 import Foundation
-import Models
 
 protocol AnalyticsProviding {
     func track(event: String, metadata: [String: String])
@@ -7,7 +6,5 @@ protocol AnalyticsProviding {
 }
 
 protocol EventTracking {
-    func trackUserLogin(user: User)
-    func trackProductView(product: Product)
-    func trackOrderPlaced(order: Order)
+    func trackCacheHit(eventName: String, displayName: String)
 }

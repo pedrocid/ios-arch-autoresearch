@@ -18,7 +18,7 @@ let package = Package(
         .target(name: "Storage", dependencies: []),
 
         // Analytics - coupled to everything
-        .target(name: "Analytics", dependencies: ["Models"]),
+        .target(name: "Analytics", dependencies: []),
 
         // UI Components - knows about infrastructure
         .target(name: "UIComponents", dependencies: ["Models", "Networking", "Analytics", "Storage"]),
