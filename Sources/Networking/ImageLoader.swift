@@ -1,6 +1,6 @@
 import Foundation
 
-public final class ImageLoader: @unchecked Sendable {
+open class ImageLoader: @unchecked Sendable {
     public static let `default` = ImageLoader()
 
     private var cache: [String: Data] = [:]

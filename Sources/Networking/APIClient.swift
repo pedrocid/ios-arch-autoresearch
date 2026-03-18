@@ -1,6 +1,6 @@
 import Foundation
 
-public final class APIClient: @unchecked Sendable {
+open class APIClient: @unchecked Sendable {
     public static let `default` = APIClient()
 
     public var baseURL: String = "https://api.example.com"

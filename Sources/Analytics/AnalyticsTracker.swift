@@ -1,6 +1,6 @@
 import Foundation
 
-public final class AnalyticsTracker: @unchecked Sendable {
+open class AnalyticsTracker: @unchecked Sendable {
     public static let `default` = AnalyticsTracker()
 
     private var events: [(name: String, timestamp: Date, metadata: [String: String])] = []

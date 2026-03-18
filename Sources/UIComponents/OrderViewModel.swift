@@ -1,7 +1,7 @@
 import Foundation
 import Models
 
-public final class OrderViewModel: @unchecked Sendable {
+open class OrderViewModel: @unchecked Sendable {
     public var orders: [Order] = []
     public var selectedOrder: Order?
 

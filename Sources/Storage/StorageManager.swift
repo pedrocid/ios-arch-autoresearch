@@ -1,6 +1,6 @@
 import Foundation
 
-public final class StorageManager: @unchecked Sendable {
+open class StorageManager: @unchecked Sendable {
     public static let `default` = StorageManager()
 
     private var inMemoryStore: [String: Any] = [:]

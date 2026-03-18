@@ -2,7 +2,7 @@ import Foundation
 import Models
 import UIComponents
 
-public final class AppCoordinator: @unchecked Sendable {
+open class AppCoordinator: @unchecked Sendable {
     public let profileVM: UserProfileViewModel?
     public let productVM: ProductListViewModel
     public let orderVM: OrderViewModel

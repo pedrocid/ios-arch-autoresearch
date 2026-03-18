@@ -1,7 +1,7 @@
 import Foundation
 import Models
 
-public final class ProductListViewModel: @unchecked Sendable {
+open class ProductListViewModel: @unchecked Sendable {
     public var products: [Product] = []
     public var isLoading: Bool = false
     public var errorMessage: String?
