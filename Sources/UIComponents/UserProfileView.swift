@@ -15,21 +15,4 @@ public struct UserProfileViewModel: Sendable {
         self.avatarData = avatarData
         self.isActive = isActive
     }
-
-    public static func load(userId: String) async throws -> UserProfileViewModel {
-        let user = try await User.fetch(id: userId)
-
-        var avatarData: Data?
-        if let url = user.avatarURL {
-            avatarData = try? await RemoteImageLoader.loadImage(from: url)
-        }
-
-        return UserProfileViewModel(
-            userId: user.id,
-            displayName: user.displayName,
-            email: user.email,
-            avatarData: avatarData,
-            isActive: user.isActive
-        )
-    }
 }

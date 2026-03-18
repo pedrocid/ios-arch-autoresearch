@@ -6,14 +6,18 @@ public final class ProductListViewModel: @unchecked Sendable {
     public var isLoading: Bool = false
     public var errorMessage: String?
 
-    public init() {}
+    private let fetchProducts: @Sendable (String) async throws -> [Product]
+
+    public init(fetchProducts: @escaping @Sendable (String) async throws -> [Product] = { _ in [] }) {
+        self.fetchProducts = fetchProducts
+    }
 
     public func loadProducts(category: String) async {
         isLoading = true
         errorMessage = nil
 
         do {
-            products = try await Product.fetchAll(category: category)
+            products = try await fetchProducts(category)
         } catch {
             errorMessage = "Failed to load products: \(error.localizedDescription)"
         }

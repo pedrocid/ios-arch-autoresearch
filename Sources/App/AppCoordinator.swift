@@ -13,7 +13,10 @@ public final class AppCoordinator: @unchecked Sendable {
 
     public init() {
         self.profileVM = nil
-        self.productVM = ProductListViewModel()
+        self.productVM = ProductListViewModel(fetchProducts: { category in
+            let data = try await APIClient.default.fetchProducts(category: category)
+            return try JSONDecoder().decode([Product].self, from: data)
+        })
         self.orderVM = OrderViewModel()
     }
 
