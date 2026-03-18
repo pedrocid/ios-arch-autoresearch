@@ -11,6 +11,12 @@ let package = Package(
         // Core models - should be independent, but we'll make it coupled
         .target(name: "Models", dependencies: []),
 
+        // Domain protocol abstractions
+        .target(name: "DomainProtocols", dependencies: []),
+
+        // Validation rule protocols
+        .target(name: "ValidationRules", dependencies: []),
+
         // Networking layer - depends on things it shouldn't
         .target(name: "Networking", dependencies: []),
 
@@ -27,6 +33,6 @@ let package = Package(
         .target(name: "App", dependencies: ["Models", "Networking", "Storage", "Analytics", "UIComponents"]),
 
         // Tests - must keep compiling
-        .testTarget(name: "AppTests", dependencies: ["App", "Models", "Networking", "Storage", "Analytics", "UIComponents"]),
+        .testTarget(name: "AppTests", dependencies: ["App", "Models", "Networking", "Storage", "Analytics", "UIComponents", "DomainProtocols", "ValidationRules"]),
     ]
 )

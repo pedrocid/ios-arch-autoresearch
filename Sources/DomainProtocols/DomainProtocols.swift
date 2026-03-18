@@ -9,5 +9,6 @@ protocol DisplayNameProviding {
 }
 
 protocol StatusProviding {
-    var status: Order.OrderStatus { get }
+    associatedtype Status
+    var status: Status { get }
 }
