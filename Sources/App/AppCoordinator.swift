@@ -2,12 +2,6 @@ import Foundation
 import Models
 import UIComponents
 
-// Protocols
-
-protocol Coordinating {
-    func diagnostics() -> String
-}
-
 protocol QuickOrderProviding {
     func quickOrder(userId: String, category: String) async -> Order?
 }
@@ -15,23 +9,6 @@ protocol QuickOrderProviding {
 protocol OrderCoordinating {
     func quickOrder(userId: String, category: String) async -> Order?
 }
-
-protocol ViewModelProviding {
-    associatedtype ProductVM
-    associatedtype OrderVM
-    var productVM: ProductVM { get }
-    var orderVM: OrderVM { get }
-}
-
-protocol DiagnosticsProviding {
-    func diagnostics() -> String
-}
-
-protocol SystemStatusProviding {
-    func statusDescription() -> String
-}
-
-// Coordinator
 
 open class AppCoordinator: @unchecked Sendable {
     public let profileVM: UserProfileViewModel?
