@@ -2,6 +2,7 @@ import Testing
 import Foundation
 @testable import Models
 @testable import Storage
+@testable import CachePolicies
 @testable import Networking
 @testable import Analytics
 @testable import UIComponents

@@ -29,6 +29,9 @@ let package = Package(
         // UI protocol abstractions
         .target(name: "UIProtocols", dependencies: []),
 
+        // Cache policy definitions
+        .target(name: "CachePolicies", dependencies: []),
+
         // Networking layer - depends on things it shouldn't
         .target(name: "Networking", dependencies: []),
 
@@ -45,6 +48,6 @@ let package = Package(
         .target(name: "App", dependencies: ["Models", "Networking", "Storage", "Analytics", "UIComponents"]),
 
         // Tests - must keep compiling
-        .testTarget(name: "AppTests", dependencies: ["App", "Models", "Networking", "Storage", "Analytics", "UIComponents", "DomainProtocols", "ValidationRules", "StorageProtocols", "NetworkProtocols", "AnalyticsProtocols", "UIProtocols"]),
+        .testTarget(name: "AppTests", dependencies: ["App", "Models", "Networking", "Storage", "Analytics", "UIComponents", "DomainProtocols", "ValidationRules", "StorageProtocols", "NetworkProtocols", "AnalyticsProtocols", "UIProtocols", "CachePolicies"]),
     ]
 )
