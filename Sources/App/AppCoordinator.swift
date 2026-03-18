@@ -1,7 +1,6 @@
 import Foundation
 import Models
 import Networking
-import Analytics
 import UIComponents
 
 public final class AppCoordinator: @unchecked Sendable {
@@ -24,13 +23,6 @@ public final class AppCoordinator: @unchecked Sendable {
         guard !productVM.products.isEmpty else { return nil }
 
         let order = orderVM.createOrder(userId: userId, products: productVM.products)
-
-        AnalyticsTracker.default.track(event: "quick_order", metadata: [
-            "user_id": userId,
-            "category": category,
-            "order_id": order.id
-        ])
-
         return order
     }
 
@@ -41,7 +33,6 @@ public final class AppCoordinator: @unchecked Sendable {
         Products loaded: \(productVM.products.count)
         Orders: \(orderVM.orders.count)
         Revenue: \(orderVM.formattedRevenue)
-        \(AnalyticsTracker.default.generateReport())
         """
     }
 }
