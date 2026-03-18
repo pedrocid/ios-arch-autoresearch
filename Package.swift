@@ -32,6 +32,18 @@ let package = Package(
         // Cache policy definitions
         .target(name: "CachePolicies", dependencies: []),
 
+        // URL abstractions
+        .target(name: "URLAbstractions", dependencies: []),
+
+        // Report abstractions
+        .target(name: "ReportAbstractions", dependencies: []),
+
+        // Deletion protocols
+        .target(name: "DeletionProtocols", dependencies: []),
+
+        // Persistence contracts
+        .target(name: "PersistenceContracts", dependencies: []),
+
         // Persistence abstractions
         .target(name: "PersistenceAbstractions", dependencies: []),
 
@@ -69,6 +81,6 @@ let package = Package(
         .target(name: "App", dependencies: ["Models", "Networking", "Storage", "Analytics", "UIComponents"]),
 
         // Tests - must keep compiling
-        .testTarget(name: "AppTests", dependencies: ["App", "Models", "Networking", "Storage", "Analytics", "UIComponents", "DomainProtocols", "ValidationRules", "StorageProtocols", "NetworkProtocols", "AnalyticsProtocols", "UIProtocols", "CachePolicies", "PersistenceAbstractions", "APIAbstractions", "EventTracking", "FormattingProtocols", "IdentityProtocols", "KeyValueAbstractions", "NetworkDefinitions"]),
+        .testTarget(name: "AppTests", dependencies: ["App", "Models", "Networking", "Storage", "Analytics", "UIComponents", "DomainProtocols", "ValidationRules", "StorageProtocols", "NetworkProtocols", "AnalyticsProtocols", "UIProtocols", "CachePolicies", "PersistenceAbstractions", "APIAbstractions", "EventTracking", "FormattingProtocols", "IdentityProtocols", "KeyValueAbstractions", "NetworkDefinitions", "URLAbstractions", "ReportAbstractions", "DeletionProtocols", "PersistenceContracts"]),
     ]
 )
