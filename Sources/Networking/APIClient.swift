@@ -14,33 +14,23 @@ open class APIClient: @unchecked Sendable {
         var request = URLRequest(url: url)
         request.timeoutInterval = timeoutInterval
         request.setValue(cacheDirective.httpHeaderValue, forHTTPHeaderField: "Cache-Control")
-
         let (data, response) = try await URLSession.shared.data(for: request)
-
-        guard let httpResponse = response as? HTTPURLResponse else {
-            throw APIError.invalidResponse
-        }
-
+        guard let httpResponse = response as? HTTPURLResponse else { throw APIError.invalidResponse }
         guard (200...299).contains(httpResponse.statusCode) else {
             lastError = "HTTP \(httpResponse.statusCode) for \(endpoint)"
             throw APIError.httpError(statusCode: httpResponse.statusCode)
         }
-
         return data
     }
 
     public func fetchUser(id: String) async throws -> Data {
-        return try await fetch(endpoint: "users/\(id)", cacheDirective: .duration(300))
+        try await fetch(endpoint: "users/\(id)", cacheDirective: .duration(300))
     }
-
     public func fetchProducts(category: String) async throws -> Data {
-        return try await fetch(endpoint: "products?category=\(category)", cacheDirective: .always)
+        try await fetch(endpoint: "products?category=\(category)", cacheDirective: .always)
     }
-
     public func statusDescription() -> String {
-        if let lastError = lastError {
-            return "API Status: Error - \(lastError)"
-        }
+        if let lastError = lastError { return "API Status: Error - \(lastError)" }
         return "API Status: OK (base: \(baseURL))"
     }
 }
