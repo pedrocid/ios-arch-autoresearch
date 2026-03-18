@@ -1,13 +1,7 @@
 import Foundation
 
-// BAD: Enum with too many responsibilities
 public enum CachePolicy {
-    case never
-    case always
-    case duration(TimeInterval)
-    case untilAppRestart
-
-    // BAD: Contains HTTP-specific logic in storage layer
+    case never, always, duration(TimeInterval), untilAppRestart
     public var httpHeaderValue: String {
         switch self {
         case .never: return "no-cache, no-store"
@@ -16,8 +10,6 @@ public enum CachePolicy {
         case .untilAppRestart: return "private, max-age=3600"
         }
     }
-
-    // BAD: UI-specific logic in storage layer
     public var displayName: String {
         switch self {
         case .never: return "No caching"
@@ -26,8 +18,6 @@ public enum CachePolicy {
         case .untilAppRestart: return "Until restart"
         }
     }
-
-    // BAD: Analytics-specific logic in storage layer
     public var analyticsEventName: String {
         switch self {
         case .never: return "cache_policy_none"

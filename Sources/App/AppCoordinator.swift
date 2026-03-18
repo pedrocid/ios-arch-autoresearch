@@ -10,9 +10,7 @@ open class AppCoordinator: @unchecked Sendable {
     public let productVM: ProductListViewModel
     public let orderVM: OrderViewModel
     public init(fetchProducts: @escaping @Sendable (String) async throws -> [Product] = { _ in [] }) {
-        self.profileVM = nil
-        self.productVM = ProductListViewModel(fetchProducts: fetchProducts)
-        self.orderVM = OrderViewModel()
+        self.profileVM = nil; self.productVM = ProductListViewModel(fetchProducts: fetchProducts); self.orderVM = OrderViewModel()
     }
     public func quickOrder(userId: String, category: String) async -> Order? {
         await productVM.loadProducts(category: category)
