@@ -41,6 +41,18 @@ let package = Package(
         // Event tracking abstractions
         .target(name: "EventTracking", dependencies: []),
 
+        // Formatting protocols
+        .target(name: "FormattingProtocols", dependencies: []),
+
+        // Identity protocols
+        .target(name: "IdentityProtocols", dependencies: []),
+
+        // Key-value abstractions
+        .target(name: "KeyValueAbstractions", dependencies: []),
+
+        // Network definitions
+        .target(name: "NetworkDefinitions", dependencies: []),
+
         // Networking layer - depends on things it shouldn't
         .target(name: "Networking", dependencies: []),
 
@@ -57,6 +69,6 @@ let package = Package(
         .target(name: "App", dependencies: ["Models", "Networking", "Storage", "Analytics", "UIComponents"]),
 
         // Tests - must keep compiling
-        .testTarget(name: "AppTests", dependencies: ["App", "Models", "Networking", "Storage", "Analytics", "UIComponents", "DomainProtocols", "ValidationRules", "StorageProtocols", "NetworkProtocols", "AnalyticsProtocols", "UIProtocols", "CachePolicies", "PersistenceAbstractions", "APIAbstractions", "EventTracking"]),
+        .testTarget(name: "AppTests", dependencies: ["App", "Models", "Networking", "Storage", "Analytics", "UIComponents", "DomainProtocols", "ValidationRules", "StorageProtocols", "NetworkProtocols", "AnalyticsProtocols", "UIProtocols", "CachePolicies", "PersistenceAbstractions", "APIAbstractions", "EventTracking", "FormattingProtocols", "IdentityProtocols", "KeyValueAbstractions", "NetworkDefinitions"]),
     ]
 )
