@@ -17,6 +17,12 @@ let package = Package(
         // Validation rule protocols
         .target(name: "ValidationRules", dependencies: []),
 
+        // Storage protocol abstractions
+        .target(name: "StorageProtocols", dependencies: []),
+
+        // Network protocol abstractions
+        .target(name: "NetworkProtocols", dependencies: []),
+
         // Networking layer - depends on things it shouldn't
         .target(name: "Networking", dependencies: []),
 
@@ -33,6 +39,6 @@ let package = Package(
         .target(name: "App", dependencies: ["Models", "Networking", "Storage", "Analytics", "UIComponents"]),
 
         // Tests - must keep compiling
-        .testTarget(name: "AppTests", dependencies: ["App", "Models", "Networking", "Storage", "Analytics", "UIComponents", "DomainProtocols", "ValidationRules"]),
+        .testTarget(name: "AppTests", dependencies: ["App", "Models", "Networking", "Storage", "Analytics", "UIComponents", "DomainProtocols", "ValidationRules", "StorageProtocols", "NetworkProtocols"]),
     ]
 )

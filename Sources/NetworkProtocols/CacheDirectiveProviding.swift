@@ -5,7 +5,8 @@ protocol CacheDirectiveProviding {
 }
 
 protocol DataFetching {
-    func fetch(endpoint: String, cacheDirective: CacheDirective) async throws -> Data
+    associatedtype Directive
+    func fetch(endpoint: String, cacheDirective: Directive) async throws -> Data
 }
 
 protocol PlaceholderProviding {

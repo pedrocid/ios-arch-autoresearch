@@ -1,7 +1,8 @@
 import Foundation
 
 protocol APIProviding {
-    func fetch(endpoint: String, cacheDirective: CacheDirective) async throws -> Data
+    associatedtype Directive
+    func fetch(endpoint: String, cacheDirective: Directive) async throws -> Data
     func fetchUser(id: String) async throws -> Data
     func fetchProducts(category: String) async throws -> Data
     func statusDescription() -> String
