@@ -1,27 +1,13 @@
 import Foundation
-
 open class AnalyticsTracker: @unchecked Sendable {
     public static let `default` = AnalyticsTracker()
-
-    private var events: [(name: String, timestamp: Date, metadata: [String: String])] = []
-
+    private(set) public var events: [(event: String, metadata: [String: String], timestamp: Date)] = []
     public init() {}
-
-    public func track(event: String, metadata: [String: String] = [:]) {
-        events.append((name: event, timestamp: Date(), metadata: metadata))
-    }
-
+    public func track(event: String, metadata: [String: String] = [:]) { events.append((event: event, metadata: metadata, timestamp: Date())) }
     public func generateReport() -> String {
-        let grouped = Dictionary(grouping: events, by: { $0.name })
-        var report = "=== Analytics Report ===\n"
-        for (event, occurrences) in grouped.sorted(by: { $0.key < $1.key }) {
-            report += "\(event): \(occurrences.count) times\n"
-        }
-        report += "Total events: \(events.count)\n"
-        return report
+        let lines = events.map { "[\($0.timestamp)] \($0.event): \($0.metadata)" }
+        return "Analytics Report (\(events.count) events):\n" + lines.joined(separator: "\n")
     }
-
-    public func trackCacheHit(eventName: String, displayName: String) {
-        track(event: eventName, metadata: ["display": displayName])
-    }
+    public func recentEvents(limit: Int = 10) -> [(event: String, metadata: [String: String], timestamp: Date)] { Array(events.suffix(limit)) }
+    public func eventCount(for eventName: String) -> Int { events.filter { $0.event == eventName }.count }
 }
