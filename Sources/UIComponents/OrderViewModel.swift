@@ -25,3 +25,19 @@ open class OrderViewModel: @unchecked Sendable {
         String(format: "Total revenue: $%.2f", totalRevenue)
     }
 }
+
+public struct UserProfileViewModel: Sendable {
+    public let userId: String
+    public let displayName: String
+    public let email: String
+    public let avatarData: Data?
+    public let isActive: Bool
+
+    public init(userId: String, displayName: String, email: String, avatarData: Data? = nil, isActive: Bool = true) {
+        self.userId = userId
+        self.displayName = displayName
+        self.email = email
+        self.avatarData = avatarData
+        self.isActive = isActive
+    }
+}
