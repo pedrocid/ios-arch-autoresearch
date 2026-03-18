@@ -23,6 +23,12 @@ let package = Package(
         // Network protocol abstractions
         .target(name: "NetworkProtocols", dependencies: []),
 
+        // Analytics protocol abstractions
+        .target(name: "AnalyticsProtocols", dependencies: []),
+
+        // UI protocol abstractions
+        .target(name: "UIProtocols", dependencies: []),
+
         // Networking layer - depends on things it shouldn't
         .target(name: "Networking", dependencies: []),
 
@@ -39,6 +45,6 @@ let package = Package(
         .target(name: "App", dependencies: ["Models", "Networking", "Storage", "Analytics", "UIComponents"]),
 
         // Tests - must keep compiling
-        .testTarget(name: "AppTests", dependencies: ["App", "Models", "Networking", "Storage", "Analytics", "UIComponents", "DomainProtocols", "ValidationRules", "StorageProtocols", "NetworkProtocols"]),
+        .testTarget(name: "AppTests", dependencies: ["App", "Models", "Networking", "Storage", "Analytics", "UIComponents", "DomainProtocols", "ValidationRules", "StorageProtocols", "NetworkProtocols", "AnalyticsProtocols", "UIProtocols"]),
     ]
 )
